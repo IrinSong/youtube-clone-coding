@@ -6,16 +6,23 @@ const PORT = 4000;
 const app = express();
 const logger = morgan("dev");
 
-const handleHome = (req, res) => {
-  return res.send("Home");
-};
-const handleLogin = (req, res) => {
-  return res.send("Login here");
-};
-
 app.use(logger); //순서가 중요! middleware를 전체에 적용하려면 맨 위에 있어야 함.
-app.get("/", handleHome);
-app.get("/login", handleLogin);
+
+const globalRouter = express.Router();
+const handleHome = (req, res) => res.send("Home");
+globalRouter.get("/", handleHome);
+
+const userRouter = express.Router();
+const handleEditUser = (req, res) => res.send("Edit User");
+userRouter.get("/edit", handleEditUser);
+
+const videoRouter = express.Router();
+const handleWatchVideo = (req, res) => res.send("Watch Video");
+videoRouter.get("/watch", handleWatchVideo);
+
+app.use("/", globalRouter);
+app.use("/users", userRouter);
+app.use("/videos", videoRouter);
 
 const handleListening = () =>
   console.log(`✅ Server listening on port http://localhost:${PORT} 🚀`);
