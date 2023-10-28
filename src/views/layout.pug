@@ -3,6 +3,8 @@ html(lang="ko")
   head
     title #{pageTitle} | Youtube Clone 
     //- 렌더링 하는 곳인 Controller에서 변수 설정
+    link(rel="stylesheet" href="https://unpkg.com/mvp.css")
   body
-    block content
+    main
+      block content
   include partials/footer.pug
