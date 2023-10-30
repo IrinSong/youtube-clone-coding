@@ -1,4 +1,7 @@
 extends layout.pug 
   
 block content
-  h1 Watch Video!
+  h3 #{video.views} #{video.views === 1 ? "view" : "views"}
+  //- ternary operator
+  a(href=`${video.id}/edit`) Edit Video &rarr;
+  //- href 앞머리에 /를 넣으면 root + /edit으로 가게 됨(absolute url). 앞머리에 /가 없다면 relative url이 됨.

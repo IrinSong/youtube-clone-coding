@@ -1,0 +1,10 @@
+mixin info(video)
+  div
+    h4
+      a(href=`/videos/${video.id}`)=video.title
+      //- attribute(href, class, id ..)에는 #{} 사용이 불가능.
+    ul 
+      li #{video.rating}/5
+      li #{video.comments} comments.
+      li Posted #{video.createdAt} minutes ago.
+      li #{video.views} views.
