@@ -1,6 +1,13 @@
 extends layout.pug 
 include mixins/video.pug
+//- .pug는 생략가능.
 
+block nav
+  nav 
+    ul 
+      li
+        a(href="/videos/upload") Upload Video
+        
 block content
   h2 Welcome here you will see the trending videos
   ul

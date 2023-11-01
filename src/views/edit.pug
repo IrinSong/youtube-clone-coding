@@ -1,8 +1,9 @@
-extends layout.pug 
+extends layout
 
 block content
   h4 Change Title of Video
     //- GET: 기본값. 검색할 때. POST: 파일을 보낼 떄, DB를 바꾸는 data를 보낼 때, 로그인 할 때.
     form(method="POST")
-      input(name="title", placeholder="Video Title", value=video.title, required)
+      //- every 'input' must have a name!!
+      input(name="title", placeholder="Video Title", value=video.title, required) 
       input(value="Save", type="submit")

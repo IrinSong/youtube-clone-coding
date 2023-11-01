@@ -28,7 +28,23 @@ let videos = [
 export const home = (req, res) =>
   res.render("home", { pageTitle: "Home", videos });
 export const search = (req, res) => res.send("Searching Videos");
-export const upload = (req, res) => res.send("Upload New Videos");
+
+export const getUpload = (req, res) => {
+  return res.render("upload", { pageTitle: "Upload Video" });
+};
+export const postUpload = (req, res) => {
+  const newVideo = {
+    title: req.body.title,
+    rating: 0,
+    comments: 0,
+    createdAt: "just now",
+    views: 0,
+    id: videos.length + 1,
+  };
+  videos.push(newVideo);
+  return res.redirect("/");
+};
+
 export const watch = (req, res) => {
   const { id } = req.params;
   // const id = req.parmas.id;
@@ -43,7 +59,7 @@ export const getEdit = (req, res) => {
 };
 export const postEdit = (req, res) => {
   const { id } = req.params;
-  const { title } = req.body;
+  const { title } = req.body; // express.urlencoded({ extended: true })가 있기에 가능.
   videos[id - 1].title = title;
   return res.redirect(`/videos/${id}`);
 };
