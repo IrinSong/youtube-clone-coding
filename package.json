@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "clone coding ver.2 youtube",
   "scripts": {
-    "dev": "nodemon --exec babel-node src/server.js"
+    "dev": "nodemon --exec babel-node src/init.js"
   },
   "repository": {
     "type": "git",
