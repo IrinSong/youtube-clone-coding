@@ -2,12 +2,12 @@ import Video from "../models/Video";
 
 export const home = async (req, res) => {
   const videos = await Video.find({}); // await -> database에게 결과값을 받을 때까지 기다려줌.
-  return res.render("home", { pageTitle: "Home", videos });
+  return res.render("home", { pageTitle: "Home", videos }); // return이 없어도 정상적으로 동작하지만, 실수 방지를 위해 사용.
 };
 export const search = (req, res) => res.send("Searching Videos");
 
 export const getUpload = (req, res) => {
-  return res.render("upload", { pageTitle: "Upload Video" });
+  return res.render("upload", { pageTitle: "Upload Video" }); // return을 써주는 이유는 이 function이 render 후에 종료되도록 하기 위함.
 };
 export const postUpload = (req, res) => {
   return res.redirect("/");
