@@ -11,7 +11,8 @@ export const getUpload = (req, res) => {
 };
 export const postUpload = async (req, res) => {
   const { title, description, hashtags } = req.body;
-  const video = new Video({
+  await Video.create({
+    // await -> 데이터를 database에 전송하는데 시간이 걸리기 때문
     title: title,
     description: description,
     createdAt: Date.now(),
@@ -21,7 +22,6 @@ export const postUpload = async (req, res) => {
       rating: 0,
     },
   });
-  await video.save(); // await -> 데이터를 database에 전송하는데 시간이 걸리기 때문
   return res.redirect("/");
 };
 
