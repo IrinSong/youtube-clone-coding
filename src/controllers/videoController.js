@@ -9,7 +9,19 @@ export const search = (req, res) => res.send("Searching Videos");
 export const getUpload = (req, res) => {
   return res.render("upload", { pageTitle: "Upload Video" }); // return을 써주는 이유는 이 function이 render 후에 종료되도록 하기 위함.
 };
-export const postUpload = (req, res) => {
+export const postUpload = async (req, res) => {
+  const { title, description, hashtags } = req.body;
+  const video = new Video({
+    title: title,
+    description: description,
+    createdAt: Date.now(),
+    hashtags: hashtags.split(",").map((word) => `#${word}`),
+    meta: {
+      views: 0,
+      rating: 0,
+    },
+  });
+  await video.save(); // await -> 데이터를 database에 전송하는데 시간이 걸리기 때문
   return res.redirect("/");
 };
 
@@ -25,7 +37,7 @@ export const getEdit = (req, res) => {
 };
 export const postEdit = (req, res) => {
   const { id } = req.params;
-  const { title } = req.body; // express.urlencoded({ extended: true })가 있기에 가능.
+  const { title, description, hashtags } = req.body; // express.urlencoded({ extended: true })가 있기에 가능.
   return res.redirect(`/videos/${id}`);
 };
 

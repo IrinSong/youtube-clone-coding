@@ -9,7 +9,8 @@ block nav
         a(href="/videos/upload") Upload Video
         
 block content
-  h2 Welcome here you will see the trending videos
   ul
     each video in videos
       +info(video)
+    else 
+      span No videos found
