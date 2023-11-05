@@ -17,7 +17,10 @@ export const postUpload = async (req, res) => {
       // await에서 에러가 생기면 아무것도 실행되지 않음. 넘어가기 위해서 try catch 를 사용
       title: title,
       description: description,
-      hashtags: hashtags.split(",").map((word) => `#${word}`),
+      hashtags: hashtags
+        .replaceAll("#", "")
+        .split(",")
+        .map((word) => `#${word}`),
     });
     return res.redirect("/");
   } catch (error) {
@@ -30,19 +33,38 @@ export const postUpload = async (req, res) => {
 };
 
 export const watch = async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.params; // id로 비디오를 찾을 수 있음.(-> mongoose queries)
   // const id = req.parmas.id;
-  const video = await Video.findById(id); // id로 비디오를 찾을 수 있음.(-> mongoose queries)
+  const video = await Video.findById(id); // .exex() -> execute를 호출하면 promise가 return 됨. but, 우리는 async await을 사용하고 있으므로 필요X
+  if (!video) {
+    return res.render("404", { pageTitle: "Video not found" }); // 에러처리 -> reutrn!!
+  }
   return res.render("watch", { pageTitle: video.title, video });
 };
 
-export const getEdit = (req, res) => {
+export const getEdit = async (req, res) => {
   const { id } = req.params;
-  return res.render("edit", { pageTitle: `Editing` });
+  const video = await Video.findById(id);
+  if (!video) {
+    return res.render("404", { pageTitle: "Video not found" });
+  }
+  return res.render("edit", { pageTitle: `Editing ${video.title}`, video });
 };
-export const postEdit = (req, res) => {
+export const postEdit = async (req, res) => {
   const { id } = req.params;
   const { title, description, hashtags } = req.body; // express.urlencoded({ extended: true })가 있기에 가능.
+  const video = await Video.exists({ _id: id }); // postEdit에서 video object를 검색할 필요가 없음. 따라서 findById() => exists()
+  if (!video) {
+    return res.render("404", { pageTitle: "Video not found" });
+  }
+  await Video.findByIdAndUpdate(id, {
+    title: title,
+    description: description,
+    hashtags: hashtags
+      .replaceAll("#", "")
+      .split(",")
+      .map((word) => `#${word}`),
+  });
   return res.redirect(`/videos/${id}`);
 };
 
