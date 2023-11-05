@@ -29,10 +29,11 @@ export const postUpload = async (req, res) => {
   }
 };
 
-export const watch = (req, res) => {
+export const watch = async (req, res) => {
   const { id } = req.params;
   // const id = req.parmas.id;
-  return res.render("Watch", { pageTitle: `Watching` });
+  const video = await Video.findById(id); // id로 비디오를 찾을 수 있음.(-> mongoose queries)
+  return res.render("watch", { pageTitle: video.title, video });
 };
 
 export const getEdit = (req, res) => {
