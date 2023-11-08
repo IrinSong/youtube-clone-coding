@@ -1,10 +1,21 @@
 import Video from "../models/Video";
 
 export const home = async (req, res) => {
-  const videos = await Video.find({}); // await -> database에게 결과값을 받을 때까지 기다려줌.
+  const videos = await Video.find({}).sort({ createdAt: "desc" }); // await -> database에게 결과값을 받을 때까지 기다려줌.
   return res.render("home", { pageTitle: "Home", videos }); // return이 없어도 정상적으로 동작하지만, 실수 방지를 위해 사용.
 };
-export const search = (req, res) => res.send("Searching Videos");
+export const search = async (req, res) => {
+  const { keyword } = req.query;
+  let videos = [];
+  if (keyword) {
+    videos = await Video.find({
+      title: {
+        $regex: new RegExp(keyword, "i"), // MongoDB 기능: regex <- regular expression, i <- 대문자 소문자 구분 없이 해주는 역할
+      },
+    });
+  }
+  return res.render("search", { pageTitle: "Search", videos });
+};
 
 export const getUpload = (req, res) => {
   return res.render("upload", { pageTitle: "Upload Video" }); // return을 써주는 이유는 이 function이 render 후에 종료되도록 하기 위함.
