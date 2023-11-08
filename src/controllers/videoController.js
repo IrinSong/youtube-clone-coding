@@ -17,7 +17,7 @@ export const postUpload = async (req, res) => {
       // await에서 에러가 생기면 아무것도 실행되지 않음. 넘어가기 위해서 try catch 를 사용
       title,
       description,
-      hashtags,
+      hashtags: Video.formatHashtags(hashtags),
     });
     return res.redirect("/");
   } catch (error) {
@@ -57,10 +57,7 @@ export const postEdit = async (req, res) => {
   await Video.findByIdAndUpdate(id, {
     title: title,
     description: description,
-    hashtags: hashtags
-      .replaceAll("#", "")
-      .split(",")
-      .map((word) => `#${word}`),
+    hashtags: Video.formatHashtags(hashtags),
   });
   return res.redirect(`/videos/${id}`);
 };

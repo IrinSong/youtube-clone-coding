@@ -11,13 +11,21 @@ const videoSchema = new mongoose.Schema({
   },
 });
 
-videoSchema.pre("save", async function () {
-  // middleware는 무조건 model이 생성되기 전에 만들어야 함.
-  this.hashtags = this.hashtags[0]
+// videoSchema.pre("save", async function () {
+//   // middleware는 무조건 model이 생성되기 전에 만들어야 함.
+//   this.hashtags = this.hashtags[0]
+//     .replaceAll(" ", "")
+//     .replaceAll("#", "")
+//     .split(",")
+//     .map((word) => `#${word}`);
+// });
+videoSchema.static("formatHashtags", function (hashtags) {
+  return hashtags
     .replaceAll(" ", "")
     .replaceAll("#", "")
     .split(",")
     .map((word) => `#${word}`);
 });
+
 const Video = mongoose.model("Video", videoSchema);
 export default Video;
