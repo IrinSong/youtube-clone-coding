@@ -15,12 +15,9 @@ export const postUpload = async (req, res) => {
     await Video.create({
       // await -> 데이터를 database에 전송하는데 시간이 걸리기 때문
       // await에서 에러가 생기면 아무것도 실행되지 않음. 넘어가기 위해서 try catch 를 사용
-      title: title,
-      description: description,
-      hashtags: hashtags
-        .replaceAll("#", "")
-        .split(",")
-        .map((word) => `#${word}`),
+      title,
+      description,
+      hashtags,
     });
     return res.redirect("/");
   } catch (error) {
@@ -53,7 +50,7 @@ export const getEdit = async (req, res) => {
 export const postEdit = async (req, res) => {
   const { id } = req.params;
   const { title, description, hashtags } = req.body; // express.urlencoded({ extended: true })가 있기에 가능.
-  const video = await Video.exists({ _id: id }); // postEdit에서 video object를 검색할 필요가 없음. 따라서 findById() => exists()
+  const video = await Video.exists({ _id: id }); // postEdit에서 video object를 검색할 필요가 없음. 따라서 대신 boolean 값을 받음. 따라서 findById() => exists()
   if (!video) {
     return res.render("404", { pageTitle: "Video not found" });
   }
