@@ -1,0 +1,16 @@
+extends layout
+
+block navLink
+  li 
+    a(href="/") Home
+  li
+    a(href="/search") Search
+
+block content 
+  form(method="POST")
+    input(type="text", name="name", placeholder="Name", required)
+    input(type="email", name="email", placeholder="E-mail", required)
+    input(type="text", name="username", placeholder="Username", required)
+    input(type="password", name="password", placeholder="Password", required)
+    input(type="text", name="location", placeholder="Location",)
+    input(type="submit", value="Join")
