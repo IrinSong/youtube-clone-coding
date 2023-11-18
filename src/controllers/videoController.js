@@ -33,7 +33,7 @@ export const postUpload = async (req, res) => {
     return res.redirect("/");
   } catch (error) {
     console.log(error);
-    return res.render("upload", {
+    return res.status(400).render("upload", {
       pageTitle: "Upload Video",
       errorMessage: error._message,
     });
@@ -45,7 +45,7 @@ export const watch = async (req, res) => {
   // const id = req.parmas.id;
   const video = await Video.findById(id); // .exex() -> execute를 호출하면 promise가 return 됨. but, 우리는 async await을 사용하고 있으므로 필요X
   if (!video) {
-    return res.render("404", { pageTitle: "Video not found" }); // 에러처리 -> reutrn!!
+    return res.status(404).render("404", { pageTitle: "Video not found" }); // 에러처리 -> reutrn!!
   }
   return res.render("watch", { pageTitle: video.title, video });
 };
@@ -54,7 +54,7 @@ export const getEdit = async (req, res) => {
   const { id } = req.params;
   const video = await Video.findById(id);
   if (!video) {
-    return res.render("404", { pageTitle: "Video not found" });
+    return res.status(404).render("404", { pageTitle: "Video not found" });
   }
   return res.render("edit", { pageTitle: `Editing ${video.title}`, video });
 };
@@ -63,7 +63,7 @@ export const postEdit = async (req, res) => {
   const { title, description, hashtags } = req.body; // express.urlencoded({ extended: true })가 있기에 가능.
   const video = await Video.exists({ _id: id }); // postEdit에서 video object를 검색할 필요가 없음. 따라서 대신 boolean 값을 받음. 따라서 findById() => exists()
   if (!video) {
-    return res.render("404", { pageTitle: "Video not found" });
+    return res.status(404).render("404", { pageTitle: "Video not found" });
   }
   await Video.findByIdAndUpdate(id, {
     title: title,
