@@ -1,3 +1,5 @@
+// require("dotenv").config(); -> 필요한 파일에 모두 넣어줘야 함.
+import "dotenv/config";
 import app from "./server";
 import "./db";
 import "./models/Video";
