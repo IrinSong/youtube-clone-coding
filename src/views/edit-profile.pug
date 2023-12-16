@@ -1,0 +1,14 @@
+extends layout 
+
+block navLink
+  li 
+    a(href="/") Home
+  li
+    a(href="/search") Search
+
+block content 
+  form(method="POST")
+    input(type="text", name="name", placeholder="Name", value=loggedInUser.name, required)
+    input(type="email", name="email", placeholder="E-mail", value=loggedInUser.email, required)
+    input(type="text", name="location", placeholder="Location", value=loggedInUser.location)
+    input(type="submit", value="Update Profile")

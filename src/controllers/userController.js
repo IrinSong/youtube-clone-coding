@@ -41,7 +41,7 @@ export const getLogin = (req, res) => res.render("Login", { pageTitle: "Login" }
 export const postLogin = async (req, res) => {
   const pageTitle = "Login";
   const { username, password } = req.body;
-  const user = await User.findOne({ username }); // = { username:username }
+  const user = await User.findOne({ username, githubAccout: false }); // = { username:username }
   if (!user) {
     return res.status(400).render("login", {
       pageTitle,
@@ -110,30 +110,36 @@ export const finishGithubLogin = async (req, res) => {
     if (!email) {
       return res.redirect("/login");
     }
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      req.session.loggedIn = true;
-      req.session.user = existingUser;
-      return res.redirect("/");
-    } else {
-      const user = await User.create({
+    let user = await User.findOne({ email });
+    if (!user) {
+      user = await User.create({
         name: userData.name ? userData.name : userData.login,
+        avatarUrl: userData.avatarUrl,
         githubAccout: true,
         username: userData.login,
         email: email,
         password: "",
         location: userData.location,
       });
-      req.session.loggedIn = true;
-      req.session.user = user;
-      return res.redirect("/");
     }
+    req.session.loggedIn = true;
+    req.session.user = user;
+    return res.redirect("/");
   } else {
     return res.redirect("/login");
   }
 };
 
-export const logout = (req, res) => res.send("Logout");
-export const edit = (req, res) => res.send("Edit User");
+export const logout = (req, res) => {
+  req.session.destroy();
+  return res.redirect("/");
+};
+
+export const getEdit = (req, res) => {
+  return res.render("edit-profile", { pageTitle: "Edit profile" });
+};
+export const postEdit = (req, res) => {
+  return res.redirect("/");
+};
 export const remove = (req, res) => res.send("Delete User");
 export const users = (req, res) => res.send("User's Profile");
