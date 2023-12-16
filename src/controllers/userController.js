@@ -138,8 +138,32 @@ export const logout = (req, res) => {
 export const getEdit = (req, res) => {
   return res.render("edit-profile", { pageTitle: "Edit profile" });
 };
-export const postEdit = (req, res) => {
-  return res.redirect("/");
+export const postEdit = async (req, res) => {
+  const {
+    session: {
+      user: { _id },
+    },
+    body: { name, email, location }, //form에서 'name'을 쓰지 않으면 적용되지 X
+  } = req;
+  // const id = req.session.user.id;
+  // const { name, email, location } = req.body;
+  const updatedUser = await User.findByIdAndUpdate(
+    _id,
+    {
+      name,
+      email,
+      location,
+    },
+    { new: true } //mongoose한테 가장 최근 업데이트된 object를 원한다고 전달
+  );
+  // req.session.user = {
+  //   ...req.session.user,
+  //   name,
+  //   email,
+  //   location,
+  // };
+  req.session.user = updatedUser;
+  return res.redirect("/users/edit");
 };
 export const remove = (req, res) => res.send("Delete User");
 export const users = (req, res) => res.send("User's Profile");
