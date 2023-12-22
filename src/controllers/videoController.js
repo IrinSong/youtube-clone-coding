@@ -18,7 +18,7 @@ export const search = async (req, res) => {
 };
 
 export const getUpload = (req, res) => {
-  return res.render("upload", { pageTitle: "Upload Video" }); // return을 써주는 이유는 이 function이 render 후에 종료되도록 하기 위함.
+  return res.render("videos/upload", { pageTitle: "Upload Video" }); // return을 써주는 이유는 이 function이 render 후에 종료되도록 하기 위함.
 };
 export const postUpload = async (req, res) => {
   const { title, description, hashtags } = req.body;
@@ -33,7 +33,7 @@ export const postUpload = async (req, res) => {
     return res.redirect("/");
   } catch (error) {
     console.log(error);
-    return res.status(400).render("upload", {
+    return res.status(400).render("videos/upload", {
       pageTitle: "Upload Video",
       errorMessage: error._message,
     });
@@ -47,7 +47,7 @@ export const watch = async (req, res) => {
   if (!video) {
     return res.status(404).render("404", { pageTitle: "Video not found" }); // 에러처리 -> reutrn!!
   }
-  return res.render("watch", { pageTitle: video.title, video });
+  return res.render("videos/watch", { pageTitle: video.title, video });
 };
 
 export const getEdit = async (req, res) => {
@@ -56,7 +56,7 @@ export const getEdit = async (req, res) => {
   if (!video) {
     return res.status(404).render("404", { pageTitle: "Video not found" });
   }
-  return res.render("edit", { pageTitle: `Editing ${video.title}`, video });
+  return res.render("videos/edit", { pageTitle: `Editing ${video.title}`, video });
 };
 export const postEdit = async (req, res) => {
   const { id } = req.params;

@@ -1,4 +1,4 @@
-extends layout 
+extends ../layout
 
 block navLink
   li 
@@ -12,3 +12,6 @@ block content
     input(type="email", name="email", placeholder="E-mail", value=loggedInUser.email, required)
     input(type="text", name="location", placeholder="Location", value=loggedInUser.location)
     input(type="submit", value="Update Profile")
+    if !loggedInUser.socialAccount
+      hr
+      a(href="change-password") Change Password &rarr;

@@ -5,7 +5,7 @@ import { users } from "../controllers/userController";
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   avatarUrl: { type: String },
-  githubAccout: { type: Boolean, default: false }, // user가 Github로 로그인했는지 여부를 알기 위해서
+  socialAccount: { type: Boolean, default: false }, // user가 Github로 로그인했는지 여부를 알기 위해서
   username: { type: String, required: true, unique: true },
   password: { type: String, required: false },
   name: { type: String, required: true },
