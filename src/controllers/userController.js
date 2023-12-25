@@ -204,4 +204,9 @@ export const postChangePassword = async (req, res) => {
 };
 
 export const remove = (req, res) => res.send("Delete User");
-export const users = (req, res) => res.send("User's Profile");
+
+export const users = async (req, res) => {
+  const { id } = req.params; // => public page이기 때문에 session을 사용해서 가져오는 것이 X
+  const user = await User.findById(id);
+  return res.render("users/profile", { pageTitle: `${user.name}'s Profile`, user });
+};

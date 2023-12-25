@@ -12,11 +12,11 @@ html(lang="ko")
           block navLink
         ul 
           if loggedIn
-            li 환영합니다, #{loggedInUser.username}님.
             li
               a(href="/videos/upload") Upload Video
+            li 환영합니다, #{loggedInUser.username}님.
             li 
-              a(href="/users/edit") Edit profile 
+              a(href=`/users/${loggedInUser._id}`) My profile 
             li 
               a(href="/users/logout") Logout 
           else
