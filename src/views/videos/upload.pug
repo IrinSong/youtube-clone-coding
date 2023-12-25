@@ -9,7 +9,9 @@ block navLink
 block content 
   if errorMessage
     span=errorMessage
-  form(method="POST")
+  form(method="POST", enctype="multipart/form-data")
+    label(for="video") Video File 
+    input(type="file", name="video", id="video", accept="video/*", required) 
     input(name="title", type="text", placeholder="Title", maxlegth=80, required)
     input(name="description", type="text", placeholder="Description", minlength=20, required)
     input(name="hashtags", type="text", placeholder="Hashtags, separated by comma.", required)

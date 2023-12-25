@@ -21,6 +21,7 @@ export const getUpload = (req, res) => {
   return res.render("videos/upload", { pageTitle: "Upload Video" }); // return을 써주는 이유는 이 function이 render 후에 종료되도록 하기 위함.
 };
 export const postUpload = async (req, res) => {
+  const { file } = req;
   const { title, description, hashtags } = req.body;
   try {
     await Video.create({
@@ -28,6 +29,7 @@ export const postUpload = async (req, res) => {
       // await에서 에러가 생기면 아무것도 실행되지 않음. 넘어가기 위해서 try catch 를 사용
       title,
       description,
+      videoUrl: file.path,
       hashtags: Video.formatHashtags(hashtags),
     });
     return res.redirect("/");
