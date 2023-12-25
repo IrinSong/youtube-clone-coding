@@ -7,7 +7,10 @@ block navLink
     a(href="/search") Search
 
 block content 
-  form(method="POST")
+  img(src= "/" + loggedInUser.avatarUrl, width="100", height="100")
+  form(method="POST", enctype="multipart/form-data")
+    label(for="avatar") Avatar
+    input(type="file", name="avatar", id="avatar", accept="image/*")
     input(type="text", name="name", placeholder="Name", value=loggedInUser.name, required)
     input(type="email", name="email", placeholder="E-mail", value=loggedInUser.email, required)
     input(type="text", name="location", placeholder="Location", value=loggedInUser.location)

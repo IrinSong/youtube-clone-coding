@@ -143,15 +143,17 @@ export const getEdit = (req, res) => {
 export const postEdit = async (req, res) => {
   const {
     session: {
-      user: { _id },
+      user: { _id, avatarUrl },
     },
     body: { name, email, location }, //form에서 'name'을 쓰지 않으면 적용되지 X
+    file,
   } = req;
   // const id = req.session.user.id;
   // const { name, email, location } = req.body;
   const updatedUser = await User.findByIdAndUpdate(
     _id,
     {
+      avatarUrl: file ? file.path : avatarUrl,
       name,
       email,
       location,
