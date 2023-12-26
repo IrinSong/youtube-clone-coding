@@ -208,10 +208,9 @@ export const remove = (req, res) => res.send("Delete User");
 
 export const users = async (req, res) => {
   const { id } = req.params; // => public page이기 때문에 session을 사용해서 가져오는 것이 X
-  const user = await User.findById(id);
+  const user = await User.findById(id).populate("videos");
   if (!user) {
     return res.status(404).render("404", { pageTitle: "User not found" });
   }
-  const videos = await Video.find({ owner: user._id });
-  return res.render("users/profile", { pageTitle: `${user.name}'s Profile`, id, user, videos });
+  return res.render("users/profile", { pageTitle: `${user.name}'s Profile`, id, user });
 };

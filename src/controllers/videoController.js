@@ -28,7 +28,7 @@ export const postUpload = async (req, res) => {
   const { file } = req;
   const { title, description, hashtags } = req.body;
   try {
-    await Video.create({
+    const newVideo = await Video.create({
       // await -> 데이터를 database에 전송하는데 시간이 걸리기 때문
       // await에서 에러가 생기면 아무것도 실행되지 않음. 넘어가기 위해서 try catch 를 사용
       title,
@@ -37,6 +37,9 @@ export const postUpload = async (req, res) => {
       hashtags: Video.formatHashtags(hashtags),
       owner: _id,
     });
+    const user = await User.findById(_id);
+    user.videos.push(newVideo._id);
+    user.save();
     return res.redirect("/");
   } catch (error) {
     console.log(error);
