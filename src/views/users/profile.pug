@@ -7,7 +7,7 @@ block navLink
   li
     a(href="/search") Search
   if !loggedIn
-  else if String(loggedInUser._id) === id
+  else if String(loggedInUser._id) === String(id)
     li
       a(href="/users/edit") Edit profile
 

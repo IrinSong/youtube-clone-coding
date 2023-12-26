@@ -14,7 +14,9 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre("save", async function () {
-  this.password = await bcrypt.hash(this.password, 5); // 여기서 this는 await User.create()
+  if (this.isModified("password")) {
+    this.password = await bcrypt.hash(this.password, 5); // 여기서 this는 await User.create()
+  }
 });
 
 const User = mongoose.model("User", userSchema);
