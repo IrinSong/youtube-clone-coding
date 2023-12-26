@@ -1,4 +1,5 @@
 import Video from "../models/Video";
+import User from "../models/User";
 
 export const home = async (req, res) => {
   const videos = await Video.find({}).sort({ createdAt: "desc" }); // await -> database에게 결과값을 받을 때까지 기다려줌.
@@ -21,6 +22,9 @@ export const getUpload = (req, res) => {
   return res.render("videos/upload", { pageTitle: "Upload Video" }); // return을 써주는 이유는 이 function이 render 후에 종료되도록 하기 위함.
 };
 export const postUpload = async (req, res) => {
+  const {
+    user: { _id },
+  } = req.session;
   const { file } = req;
   const { title, description, hashtags } = req.body;
   try {
@@ -31,6 +35,7 @@ export const postUpload = async (req, res) => {
       description,
       videoUrl: file.path,
       hashtags: Video.formatHashtags(hashtags),
+      owner: _id,
     });
     return res.redirect("/");
   } catch (error) {
@@ -45,7 +50,7 @@ export const postUpload = async (req, res) => {
 export const watch = async (req, res) => {
   const { id } = req.params; // id로 비디오를 찾을 수 있음.(-> mongoose queries)
   // const id = req.parmas.id;
-  const video = await Video.findById(id); // .exex() -> execute를 호출하면 promise가 return 됨. but, 우리는 async await을 사용하고 있으므로 필요X
+  const video = await Video.findById(id).populate("owner"); // .exex() -> execute를 호출하면 promise가 return 됨. but, 우리는 async await을 사용하고 있으므로 필요X
   if (!video) {
     return res.status(404).render("404", { pageTitle: "Video not found" }); // 에러처리 -> reutrn!!
   }

@@ -1,12 +1,18 @@
 extends ../layout
+include ../mixins/video
 
 block navLink
   li 
     a(href="/") Home
   li
     a(href="/search") Search
+  if String(loggedInUser._id) === id
+    li
+      a(href="/users/edit") Edit profile
 
 block content 
-  h1 hello
+  each video in videos
+    +info(video)
+  else
+   li Sorry nothing found
   hr
-  a(href="/users/edit") Edit profile 
