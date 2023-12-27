@@ -1,11 +1,13 @@
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 
 module.exports = {
   entry: "./src/client/js/main.js", // entry: sorce code which i want to transform
+  plugins: [new MiniCssExtractPlugin({ filename: "css/styles.css" })],
   mode: "development",
   output: {
-    filename: "main.js",
-    path: path.resolve(__dirname, "assets", "js"), //where do we want to put our file
+    filename: "js/main.js",
+    path: path.resolve(__dirname, "assets"), //where do we want to put our file
   },
   module: {
     rules: [
@@ -20,7 +22,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"], //webpack은 뒤에서부터 시작
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"], //webpack은 뒤에서부터 시작
       },
     ],
   },
