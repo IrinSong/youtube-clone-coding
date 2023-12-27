@@ -18,6 +18,10 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.scss$/,
+        use: ["style-loader", "css-loader", "sass-loader"], //webpack은 뒤에서부터 시작
+      },
     ],
   },
 };
