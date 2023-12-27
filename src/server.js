@@ -28,6 +28,7 @@ app.use(
 
 app.use(localsMiddleware);
 app.use("/uploads", express.static("uploads")); // static -> 디렉토리 내부의 파일을 제공
+app.use("/assets", express.static("assets"));
 app.use("/", rootRouter);
 app.use("/users", userRouter);
 app.use("/videos", videoRouter);

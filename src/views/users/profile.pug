@@ -6,12 +6,12 @@ block navLink
     a(href="/") Home
   li
     a(href="/search") Search
-  if !loggedIn
-  else if String(loggedInUser._id) === String(id)
-    li
-      a(href="/users/edit") Edit profile
 
 block content 
+  if !loggedIn
+  else if String(loggedInUser._id) === String(id)
+    a(href="/users/edit") Edit profile
+  hr
   each video in user.videos
     +info(video)
   else
