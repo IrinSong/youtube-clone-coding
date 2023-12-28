@@ -1,0 +1,32 @@
+.empty__message {
+  font-size: 15px;
+  margin-bottom: 50px;
+}
+.video-grid {
+  display: grid;
+  gap: 50px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.auth-switch {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin-top: 50px;
+  color: $font;
+  font-size: 14px;
+  font-weight: 300;
+  a {
+    color: $font;
+    font-size: 12px;
+    font-weight: 800;
+    margin-top: 10px;
+    text-decoration: underline;
+  }
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}

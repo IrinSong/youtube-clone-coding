@@ -1,0 +1,24 @@
+header
+  a(href="/").header__profile
+    span.material-symbols-outlined.material-symbols-outlined--smart_display.header__logo smart_display
+    span.header__title MeTube
+  nav 
+    ul
+      li 
+        a(href="/search").header__profile
+          span 검색
+          span.material-symbols-outlined.material-symbols-outlined--search search
+      if loggedIn
+        li
+          a(href="/videos/upload") 동영상 업로드
+        li.header__profile
+          span 환영합니다, #{loggedInUser.username}님
+          a(href=`/users/${loggedInUser._id}`)
+            img(src= "/" + loggedInUser.avatarUrl).header__avatar
+        li 
+          a(href="/users/logout") 로그아웃
+      else
+        li 
+          a(href="/login") 로그인
+        li 
+          a(href="/join").header__btn 회원가입

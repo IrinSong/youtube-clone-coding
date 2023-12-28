@@ -1,25 +1,21 @@
 extends ../layout
 
-block navLink
-  li
-    a(href="/") Home
-  li
-    a(href="/search") Search
-  
 block content
-  video(src="/" + video.videoUrl, controls) 
-  div
-    p=video.description
-    small=video.createdAt
-    br
-    small Uploaded by 
-      a(href=`/users/${video.owner._id}`) #{video.owner.name}
+  div.watch-video
+    video(src="/" + video.videoUrl, controls)
+    span.watch-video__title=video.title
+    div.watch-video__data
+      img(src= "/" + video.owner.avatarUrl).watch-video__img
+      div.watch-video__text
+        a(href=`/users/${video.owner._id}`) #{video.owner.name}
+        small #{video.owner.views}회 • #{video.createdAt}
+    div.watch-video__meta
+      p=video.description
   //- h3 #{video.views} #{video.views === 1 ? "view" : "views"}
   //- ternary operator
   if !loggedIn
   else if String(loggedInUser._id) === String(video.owner._id)
-    hr
-    a(href=`${video.id}/edit`) Edit Video &rarr;
-    //- href 앞머리에 /를 넣으면 root + /edit으로 가게 됨(absolute url). 앞머리에 /가 없다면 relative url이 됨.
-    br
-    a(href=`${video.id}/delete`) Delete Video &rarr;
+    div.video-link
+      a(href=`${video.id}/edit`) 비디오 편집 &rarr;
+      //- href 앞머리에 /를 넣으면 root + /edit으로 가게 됨(absolute url). 앞머리에 /가 없다면 relative url이 됨.
+      a(href=`${video.id}/delete`).video-link__delete 비디오 삭제 &rarr;

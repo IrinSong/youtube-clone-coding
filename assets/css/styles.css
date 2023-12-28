@@ -1,7 +1,481 @@
 /*!**********************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/client/scss/styles.scss ***!
   \**********************************************************************************************************************/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
 body {
-  background-color: tomato;
-  color: teal;
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+}
+header .header__profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .header__logo {
+  color: #87e89d;
+  font-size: 38px;
+  margin-right: 5px;
+}
+header .header__title {
+  font-family: "Gothic A1", sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  margin-top: 4px;
+}
+header ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header ul li {
+  margin-left: 30px;
+  font-size: 14px;
+  font-weight: 600;
+}
+header ul .header__profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header ul .material-symbols-outlined {
+  margin-left: 3px;
+  font-size: 18px;
+}
+header .header__avatar {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  border: 2px solid #5a9c69;
+  margin-left: 10px;
+}
+header .header__btn {
+  background-color: #87e89d;
+  color: #454545;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+footer {
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.8;
+  margin-top: 100px;
+  margin-bottom: 20px;
+}
+
+.video-mixin .video-mixin__thumb {
+  width: 100%;
+  height: 140px;
+  background-color: #e8e8e8;
+  border-radius: 7px;
+}
+.video-mixin .video-mixin__data {
+  display: flex;
+  align-items: center;
+}
+.video-mixin .video-mixin__data .video-mixin__img {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  border: 1.5px solid #e8e8e8;
+}
+.video-mixin .video-mixin__data .video-mixin__text {
+  padding: 0 10px;
+}
+.video-mixin .video-mixin__data .video-mixin__text .video-mixin__title {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+.video-mixin .video-mixin__data .video-mixin__text .video-mixin__meta {
+  font-size: 12px;
+  margin-top: 5px;
+  color: #454545;
+}
+
+.empty__message {
+  font-size: 15px;
+  margin-bottom: 50px;
+}
+
+.video-grid {
+  display: grid;
+  gap: 50px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.auth-switch {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin-top: 50px;
+  color: #454545;
+  font-size: 14px;
+  font-weight: 300;
+}
+.auth-switch a {
+  color: #454545;
+  font-size: 12px;
+  font-weight: 800;
+  margin-top: 10px;
+  text-decoration: underline;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+form {
+  max-width: 420px;
+  margin: 0 auto;
+}
+form:not(.search__form) {
+  padding: 30px;
+  background-color: white;
+  border-radius: 10px;
+  border: 1.5px solid #e8e8e8;
+}
+form label {
+  color: #72c485;
+  font-weight: 700;
+  margin-top: 10px;
+}
+form .file-input {
+  border: 1.5px solid #72c485;
+}
+
+input {
+  all: unset;
+  background-color: white;
+  color: #2b4a32;
+  font-size: 15px;
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  width: 90%;
+  border-radius: 5px;
+  border: 1px solid #e8e8e8;
+  transition: 0.2s ease-in-out;
+}
+input::placeholder {
+  color: #5a9c69;
+  font-size: 14px;
+  font-weight: 600;
+}
+input:focus {
+  border: 2px solid #87e89d;
+}
+
+input[type=submit],
+.social__btn {
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  background-color: #87e89d;
+  color: #454545;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 12px 20px;
+  margin-top: 21px;
+  border-radius: 5px;
+}
+
+.social-login {
+  border-top: 1px solid #e8e8e8;
+  padding-top: 30px;
+  margin-top: 15px;
+}
+.social-login .social__btn--Github {
+  background-color: #e8e8e8;
+  color: #9656b0;
+}
+
+.search__form {
+  display: flex;
+  position: relative;
+  align-items: center;
+  margin-bottom: 60px;
+}
+.search__form input {
+  all: unset;
+  background-color: white;
+  color: #2b4a32;
+  width: 90%;
+  padding: 15px 20px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  border: 1.5px solid #43734e;
+  border-radius: 30px;
+  transition: 0.2s ease-in-out;
+}
+.search__form input::placeholder {
+  color: #e8e8e8;
+}
+.search__form input:focus {
+  border: 1.5px solid #72c485;
+}
+.search__form button {
+  all: unset;
+  text-align: center;
+  position: absolute;
+  cursor: pointer;
+  right: 15px;
+  font-size: 18px;
+}
+
+.profile__data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 420px;
+  margin: 0 auto;
+  margin-bottom: 80px;
+}
+.profile__data img {
+  margin-bottom: 20px;
+}
+.profile__data h3 {
+  font-size: 21px;
+  font-weight: 600;
+}
+.profile__data .edit_profile__link {
+  background-color: #43734e;
+  padding: 7px 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  margin-top: 10px;
+}
+
+form label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.edit-profile__password {
+  text-align: center;
+  margin-top: 50px;
+}
+.edit-profile__password a {
+  text-decoration: underline;
+}
+
+.watch-video {
+  display: flex;
+  flex-direction: column;
+  color: #454545;
+}
+.watch-video .watch-video__title {
+  margin: 12px 0;
+  font-size: 19px;
+  font-weight: 800;
+}
+.watch-video .watch-video__data {
+  display: flex;
+}
+.watch-video .watch-video__data .watch-video__img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.watch-video .watch-video__data .watch-video__text {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  font-weight: 400;
+}
+.watch-video .watch-video__data .watch-video__text small {
+  margin-top: 3px;
+  font-size: 12px;
+  opacity: 0.8;
+}
+.watch-video .watch-video__meta {
+  background-color: #e8e8e8;
+  margin: 12px 0;
+  padding: 15px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.video-link {
+  display: flex;
+  justify-content: end;
+  margin-top: 20px;
+}
+.video-link a {
+  background-color: #454545;
+  color: white;
+  font-size: 13px;
+  font-weight: 800;
+  margin-left: 12px;
+  padding: 15px 20px;
+  border-radius: 25px;
+}
+.video-link .video-link__delete {
+  background-color: #87e89d;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Gothic A1", BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: white;
+  color: #2b4a32;
+}
+
+main {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
 }

@@ -1,0 +1,24 @@
+.profile__data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 420px;
+  margin: 0 auto;
+  margin-bottom: 80px;
+  img {
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 21px;
+    font-weight: 600;
+  }
+  .edit_profile__link {
+    background-color: $subb;
+    padding: 7px 14px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    margin-top: 10px;
+  }
+}

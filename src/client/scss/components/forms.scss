@@ -1,0 +1,52 @@
+form {
+  max-width: 420px;
+  margin: 0 auto;
+  &:not(.search__form) {
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1.5px solid $bg;
+  }
+  label {
+    color: $subw;
+    font-weight: 700;
+    margin-top: 10px;
+  }
+  .file-input {
+    border: 1.5px solid $subw;
+  }
+}
+input {
+  all: unset;
+  background-color: white;
+  color: $subbb;
+  font-size: 15px;
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  width: 90%;
+  border-radius: 5px;
+  border: 1px solid $bg;
+  transition: 0.2s ease-in-out;
+  &::placeholder {
+    color: $key;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  &:focus {
+    border: 2px solid $subww;
+  }
+}
+
+input[type="submit"],
+.social__btn {
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  background-color: $subww;
+  color: $font;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 12px 20px;
+  margin-top: 21px;
+  border-radius: 5px;
+}

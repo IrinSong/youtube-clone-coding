@@ -2,13 +2,9 @@ extends layout.pug
 include mixins/video.pug
 //- .pug는 생략가능.
 
-block navLink
-  li
-    a(href="/search") Search
-        
 block content
-  ul
+  div.video-grid
     each video in videos
       +info(video)
     else 
-      span No videos found
+      span.empty__message 비디오를 찾을 수 없습니다.

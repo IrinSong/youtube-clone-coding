@@ -2,7 +2,7 @@ import Video from "../models/Video";
 import User from "../models/User";
 
 export const home = async (req, res) => {
-  const videos = await Video.find({}).sort({ createdAt: "desc" }); // await -> database에게 결과값을 받을 때까지 기다려줌.
+  const videos = await Video.find({}).sort({ createdAt: "desc" }).populate("owner"); // await -> database에게 결과값을 받을 때까지 기다려줌.
   return res.render("home", { pageTitle: "Home", videos }); // return이 없어도 정상적으로 동작하지만, 실수 방지를 위해 사용.
 };
 export const search = async (req, res) => {
@@ -11,9 +11,9 @@ export const search = async (req, res) => {
   if (keyword) {
     videos = await Video.find({
       title: {
-        $regex: new RegExp(keyword, "i"), // MongoDB 기능: regex <- regular expression, i <- 대문자 소문자 구분 없이 해주는 역할
+        $regex: new RegExp(`${keyword}$`, "i"), // MongoDB 기능: regex <- regular expression, i <- 대문자 소문자 구분 없이 해주는 역할
       },
-    });
+    }).populate("owner");
   }
   return res.render("search", { pageTitle: "Search", videos });
 };
