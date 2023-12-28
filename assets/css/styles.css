@@ -286,7 +286,7 @@ form .file-input {
   border: 1.5px solid #72c485;
 }
 
-input {
+input:not(input[type=range]) {
   all: unset;
   background-color: white;
   color: #2b4a32;
@@ -298,12 +298,12 @@ input {
   border: 1px solid #e8e8e8;
   transition: 0.2s ease-in-out;
 }
-input::placeholder {
+input:not(input[type=range])::placeholder {
   color: #5a9c69;
   font-size: 14px;
   font-weight: 600;
 }
-input:focus {
+input:not(input[type=range]):focus {
   border: 2px solid #87e89d;
 }
 

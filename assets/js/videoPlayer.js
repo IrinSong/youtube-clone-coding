@@ -15,7 +15,7 @@
   \**************************************/
 /***/ (() => {
 
-eval("\n\n//# sourceURL=webpack://youtube-clone-coding/./src/client/js/videoPlayer.js?");
+eval("const video = document.querySelector(\"video\");\nconst playBtn = document.getElementById(\"play\");\nconst muteBtn = document.getElementById(\"mute\");\nconst time = document.getElementById(\"time\");\nconst volume = document.getElementById(\"volume\");\nconst handlePlayBtn = e => {\n  if (video.paused) {\n    video.play();\n  } else {\n    video.pause();\n  }\n};\nconst handleMuteBtn = e => {};\nconst handlePause = e => {\n  playBtn.innerText = \"Play\";\n};\nconst handlePlay = e => {\n  playBtn.innerText = \"Pause\";\n};\nplayBtn.addEventListener(\"click\", handlePlayBtn);\nmuteBtn.addEventListener(\"click\", handleMuteBtn);\nvideo.addEventListener(\"pause\", handlePause);\nvideo.addEventListener(\"play\", handlePlay);\n\n//# sourceURL=webpack://youtube-clone-coding/./src/client/js/videoPlayer.js?");
 
 /***/ })
 
