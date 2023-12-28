@@ -19,3 +19,6 @@ block content
       a(href=`${video.id}/edit`) 비디오 편집 &rarr;
       //- href 앞머리에 /를 넣으면 root + /edit으로 가게 됨(absolute url). 앞머리에 /가 없다면 relative url이 됨.
       a(href=`${video.id}/delete`).video-link__delete 비디오 삭제 &rarr;
+
+block scripts 
+  script(src="/assets/js/videoPlayer.js")

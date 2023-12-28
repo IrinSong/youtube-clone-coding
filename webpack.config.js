@@ -2,12 +2,15 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 
 module.exports = {
-  entry: "./src/client/js/main.js", // entry: sorce code which i want to transform
+  entry: {
+    main: "./src/client/js/main.js",
+    videoPlayer: "./src/client/js/videoPlayer.js",
+  }, // entry: sorce code which i want to transform
   plugins: [new MiniCssExtractPlugin({ filename: "css/styles.css" })],
   mode: "development",
   watch: true,
   output: {
-    filename: "js/main.js",
+    filename: "js/[name].js",
     path: path.resolve(__dirname, "assets"), //where do we want to put our file
     clean: true,
   },
