@@ -221,11 +221,13 @@ footer {
 .video-mixin .video-mixin__data .video-mixin__text .video-mixin__title {
   display: block;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   margin-top: 10px;
 }
 .video-mixin .video-mixin__data .video-mixin__text .video-mixin__meta {
   font-size: 12px;
+  font-weight: 500;
+  opacity: 0.7;
   margin-top: 5px;
   color: #454545;
 }
@@ -325,6 +327,7 @@ input[type=submit],
   margin-top: 15px;
 }
 .social-login .social__btn--Github {
+  font-size: 14px;
   background-color: #e8e8e8;
   color: #9656b0;
 }

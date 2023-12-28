@@ -19,11 +19,13 @@
       .video-mixin__title {
         display: block;
         font-size: 16px;
-        font-weight: 500;
+        font-weight: 600;
         margin-top: 10px;
       }
       .video-mixin__meta {
         font-size: 12px;
+        font-weight: 500;
+        opacity: 0.7;
         margin-top: 5px;
         color: $font;
       }

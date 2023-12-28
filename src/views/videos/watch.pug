@@ -8,7 +8,7 @@ block content
       img(src= "/" + video.owner.avatarUrl).watch-video__img
       div.watch-video__text
         a(href=`/users/${video.owner._id}`) #{video.owner.name}
-        small #{video.owner.views}회 • #{video.createdAt}
+        small #{video.meta.views}회 • #{video.createdAt}
     div.watch-video__meta
       p=video.description
   //- h3 #{video.views} #{video.views === 1 ? "view" : "views"}

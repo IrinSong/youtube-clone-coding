@@ -209,7 +209,8 @@ export const users = async (req, res) => {
   const { id } = req.params; // => public page이기 때문에 session을 사용해서 가져오는 것이 X
   const user = await User.findById(id).populate({
     path: "videos",
-    popluate: {
+    populate: {
+      //dobule populate
       path: "owner",
       model: "User",
     },
