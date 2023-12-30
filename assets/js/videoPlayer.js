@@ -15,7 +15,7 @@
   \**************************************/
 /***/ (() => {
 
-eval("const video = document.querySelector(\"video\");\nconst playBtn = document.getElementById(\"play\");\nconst muteBtn = document.getElementById(\"mute\");\nconst time = document.getElementById(\"time\");\nconst volume = document.getElementById(\"volume\");\nconst handlePlayBtn = e => {\n  if (video.paused) {\n    video.play();\n  } else {\n    video.pause();\n  }\n};\nconst handleMuteBtn = e => {};\nconst handlePause = e => {\n  playBtn.innerText = \"Play\";\n};\nconst handlePlay = e => {\n  playBtn.innerText = \"Pause\";\n};\nplayBtn.addEventListener(\"click\", handlePlayBtn);\nmuteBtn.addEventListener(\"click\", handleMuteBtn);\nvideo.addEventListener(\"pause\", handlePause);\nvideo.addEventListener(\"play\", handlePlay);\n\n//# sourceURL=webpack://youtube-clone-coding/./src/client/js/videoPlayer.js?");
+eval("const video = document.querySelector(\"video\");\nconst playBtn = document.getElementById(\"play\");\nconst muteBtn = document.getElementById(\"mute\");\nconst time = document.getElementById(\"time\");\nconst volumeRange = document.getElementById(\"volume\");\nconst handlePlayBtn = e => {\n  if (video.paused) {\n    video.play();\n  } else {\n    video.pause();\n  }\n  playBtn.innerText = video.paused ? \"Play\" : \"Pause\";\n};\nconst handleMuteBtn = e => {\n  if (video.muted) {\n    video.muted = false;\n  } else {\n    video.muted = true;\n  }\n  muteBtn.innerText = video.muted ? \"Unmute\" : \"Mute\";\n  volumeRange.value = video.muted ? 0 : 0.5;\n};\nplayBtn.addEventListener(\"click\", handlePlayBtn);\nmuteBtn.addEventListener(\"click\", handleMuteBtn);\n\n//# sourceURL=webpack://youtube-clone-coding/./src/client/js/videoPlayer.js?");
 
 /***/ })
 

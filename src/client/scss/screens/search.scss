@@ -23,10 +23,14 @@
   }
   button {
     all: unset;
+    display: flex;
     text-align: center;
     position: absolute;
     cursor: pointer;
     right: 15px;
     font-size: 18px;
+    span {
+      margin-bottom: 10px;
+    }
   }
 }
