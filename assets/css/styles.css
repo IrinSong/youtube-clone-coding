@@ -268,45 +268,50 @@ footer {
 }
 
 form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   max-width: 420px;
   margin: 0 auto;
 }
 form:not(.search__form) {
-  display: flex;
-  flex-direction: column;
-  align-items: end;
   padding: 30px;
   background-color: white;
   border-radius: 10px;
-  border: 1.5px solid #e8e8e8;
+  border: 1.5px solid #87e89d;
 }
-form label {
-  color: #72c485;
+form .input-label {
+  width: 100%;
+}
+form .input-label label {
+  color: #43734e;
+  display: block;
+  font-size: 14px;
   font-weight: 700;
-  margin-top: 10px;
+  margin: 10px 0;
 }
-form .file-input {
-  border: 1.5px solid #72c485;
+form .input-label input[type=file] {
+  border: 1.5px solid #43734e;
 }
 
-input:not(input[type=range], input[type=submit]) {
+input {
   all: unset;
-  background-color: white;
+  background-color: #e8e8e8;
   color: #2b4a32;
   font-size: 15px;
   padding: 15px 20px;
   margin-bottom: 10px;
   width: 90%;
   border-radius: 5px;
-  border: 1px solid #e8e8e8;
+  border: 2px solid #e8e8e8;
   transition: 0.2s ease-in-out;
 }
-input:not(input[type=range], input[type=submit])::placeholder {
+input::placeholder {
   color: #5a9c69;
   font-size: 14px;
   font-weight: 600;
 }
-input:not(input[type=range], input[type=submit]):focus {
+input:focus {
   border: 2px solid #87e89d;
 }
 
@@ -334,7 +339,7 @@ input[type=submit] {
   padding: 12px 60px;
   border-radius: 5px;
   background-color: #e8e8e8;
-  opacity: 0.9;
+  opacity: 0.8;
   color: #9656b0;
 }
 
@@ -347,12 +352,12 @@ input[type=submit] {
 .search__form input {
   all: unset;
   background-color: white;
-  color: #2b4a32;
+  color: #454545;
   width: 90%;
   padding: 15px 20px;
   margin-bottom: 5px;
   font-size: 16px;
-  border: 1.5px solid #43734e;
+  border: 2px solid #72c485;
   border-radius: 30px;
   transition: 0.2s ease-in-out;
 }
@@ -360,7 +365,7 @@ input[type=submit] {
   color: #e8e8e8;
 }
 .search__form input:focus {
-  border: 1.5px solid #72c485;
+  border: 2px solid #87e89d;
 }
 .search__form button {
   all: unset;
@@ -387,27 +392,23 @@ input[type=submit] {
   margin-bottom: 20px;
 }
 .profile__data h3 {
-  font-size: 21px;
+  font-size: 24px;
   font-weight: 600;
 }
 .profile__data .edit_profile__link {
-  background-color: #43734e;
-  padding: 7px 14px;
-  border-radius: 14px;
+  background-color: #87e89d;
+  padding: 8px 16px;
+  border-radius: 16px;
   font-size: 14px;
-  font-weight: 500;
-  color: white;
+  font-weight: 600;
+  color: #454545;
   margin-top: 10px;
-}
-
-form label {
-  display: block;
-  font-size: 14px;
-  margin-bottom: 10px;
 }
 
 .edit-profile__password {
   text-align: center;
+  color: #43734e;
+  font-size: 14px;
   margin-top: 50px;
 }
 .edit-profile__password a {
@@ -417,7 +418,7 @@ form label {
 .watch-video {
   display: flex;
   flex-direction: column;
-  color: #454545;
+  color: white;
 }
 .watch-video .watch-video__title {
   margin: 12px 0;
@@ -451,6 +452,7 @@ form label {
   border-radius: 12px;
   font-size: 13px;
   font-weight: 500;
+  color: #454545;
 }
 
 .video-link {
@@ -478,8 +480,8 @@ a {
 
 body {
   font-family: system-ui, -apple-system, "Gothic A1", BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background-color: white;
-  color: #2b4a32;
+  background-color: #454545;
+  color: white;
 }
 
 main {

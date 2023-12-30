@@ -6,19 +6,19 @@
   input {
     all: unset;
     background-color: white;
-    color: $subbb;
+    color: $font;
     width: 90%;
     padding: 15px 20px;
     margin-bottom: 5px;
     font-size: 16px;
-    border: 1.5px solid $subb;
+    border: 2px solid $subw;
     border-radius: 30px;
     transition: 0.2s ease-in-out;
     &::placeholder {
       color: $bg;
     }
     &:focus {
-      border: 1.5px solid $subw;
+      border: 2px solid $subww;
     }
   }
   button {

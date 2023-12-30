@@ -2,12 +2,13 @@ extends ../layout
 
 block content 
   form(method="POST", enctype="multipart/form-data").edit-profile__form
-    label(for="avatar") 프로필 사진
-    input(type="file", name="avatar", id="avatar", accept="image/*").file-input 
+    div.input-label
+      label(for="avatar") 프로필 사진
+      input(type="file", name="avatar", id="avatar", accept="image/*").file-input 
     input(type="text", name="name", placeholder="이름", value=loggedInUser.name, required)
     input(type="email", name="email", placeholder="이메일", value=loggedInUser.email, required)
     input(type="text", name="location", placeholder="거주지", value=loggedInUser.location)
     input(type="submit", value="프로필 수정")
     if !loggedInUser.socialAccount
       div.edit-profile__password
-        a(href="change-password") 비밀번호 변경 &rarr;
+        a(href="change-password") 비밀번호 변경 &rarr; 

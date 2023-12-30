@@ -1,7 +1,7 @@
 .watch-video {
   display: flex;
   flex-direction: column;
-  color: $font;
+  color: white;
   .watch-video__title {
     margin: 12px 0;
     font-size: 19px;
@@ -34,6 +34,7 @@
     border-radius: 12px;
     font-size: 13px;
     font-weight: 500;
+    color: $font;
   }
 }
 

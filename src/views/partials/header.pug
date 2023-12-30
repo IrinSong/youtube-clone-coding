@@ -1,7 +1,7 @@
 header
   a(href="/").header__profile
-    span.material-symbols-outlined.material-symbols-outlined--smart_display.header__logo smart_display
-    span.header__title MeTube
+    span.material-symbols-outlined.material-symbols-outlined--smart_display.header__logo album
+    span.header__title YouPly
   nav 
     ul
       li 
@@ -10,7 +10,7 @@ header
           span.material-symbols-outlined.material-symbols-outlined--search search
       if loggedIn
         li
-          a(href="/videos/upload") 동영상 업로드
+          a(href="/videos/upload") 플리 업로드
         li.header__profile
           span 환영합니다, #{loggedInUser.username}님
           a(href=`/users/${loggedInUser._id}`)
