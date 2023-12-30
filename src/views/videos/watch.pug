@@ -6,7 +6,10 @@ block content
     div
       button#play Play
       button#mute Mute
-      span#time 00:00/00:00
+      div 
+        span#currentTime 0:00
+        span  / 
+        span#totalTime 0:00
       input#volume(type="range", name="", step="0.1", value="0.5", min="0", max="1")
     span.watch-video__title=video.title
     div.watch-video__data
