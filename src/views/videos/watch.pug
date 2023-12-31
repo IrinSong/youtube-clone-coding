@@ -15,7 +15,8 @@ block content
         input#timeline(type="range", name="timeline", step="1", value="0", min="0")
     span.watch-video__title=video.title
     div.watch-video__data
-      img(src= "/" + video.owner.avatarUrl).watch-video__img
+      a(href=`/users/${video.owner._id}`)
+        img(src= "/" + video.owner.avatarUrl).watch-video__img
       div.watch-video__text
         a(href=`/users/${video.owner._id}`) #{video.owner.name}
         small #{video.meta.views}회 • #{video.createdAt}
