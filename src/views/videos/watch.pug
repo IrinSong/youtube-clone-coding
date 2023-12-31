@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-  div.watch-video
+  div#videoContainer
     video(src="/" + video.videoUrl)
     div
       button#play Play
@@ -13,6 +13,9 @@ block content
         span#totalTime 00:00:00
       div 
         input#timeline(type="range", name="timeline", step="1", value="0", min="0")
+      div 
+        button#fullScreen Enter Full Screen
+  div.watch-video
     span.watch-video__title=video.title
     div.watch-video__data
       a(href=`/users/${video.owner._id}`)

@@ -1,3 +1,4 @@
+#videoContainer,
 .watch-video {
   display: flex;
   flex-direction: column;
@@ -28,13 +29,13 @@
     }
   }
   .watch-video__meta {
-    background-color: $bg;
+    background-color: $font;
     margin: 12px 0;
     padding: 15px;
     border-radius: 12px;
     font-size: 13px;
     font-weight: 500;
-    color: $font;
+    color: white;
   }
 }
 
@@ -43,8 +44,8 @@
   justify-content: end;
   margin-top: 20px;
   a {
-    background-color: $font;
-    color: white;
+    background-color: $bg;
+    color: black;
     font-size: 13px;
     font-weight: 800;
     margin-left: 12px;

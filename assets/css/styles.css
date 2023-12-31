@@ -227,9 +227,9 @@ footer {
 .video-mixin .video-mixin__data .video-mixin__text .video-mixin__meta {
   font-size: 12px;
   font-weight: 500;
-  opacity: 0.7;
+  opacity: 0.5;
   margin-top: 5px;
-  color: #454545;
+  color: #e8e8e8;
 }
 
 .empty__message {
@@ -293,8 +293,7 @@ form .input-label label {
 form .input-label input[type=file] {
   border: 1.5px solid #43734e;
 }
-
-input {
+form input {
   all: unset;
   background-color: #e8e8e8;
   color: #2b4a32;
@@ -306,16 +305,15 @@ input {
   border: 2px solid #e8e8e8;
   transition: 0.2s ease-in-out;
 }
-input::placeholder {
+form input::placeholder {
   color: #5a9c69;
   font-size: 14px;
   font-weight: 600;
 }
-input:focus {
+form input:focus {
   border: 2px solid #87e89d;
 }
-
-input[type=submit] {
+form input[type=submit] {
   all: unset;
   cursor: pointer;
   background-color: #87e89d;
@@ -339,7 +337,6 @@ input[type=submit] {
   padding: 12px 60px;
   border-radius: 5px;
   background-color: #e8e8e8;
-  opacity: 0.8;
   color: #9656b0;
 }
 
@@ -401,7 +398,7 @@ input[type=submit] {
   border-radius: 16px;
   font-size: 14px;
   font-weight: 600;
-  color: #454545;
+  color: black;
   margin-top: 10px;
 }
 
@@ -415,44 +412,51 @@ input[type=submit] {
   text-decoration: underline;
 }
 
+#videoContainer,
 .watch-video {
   display: flex;
   flex-direction: column;
   color: white;
 }
+#videoContainer .watch-video__title,
 .watch-video .watch-video__title {
   margin: 12px 0;
   font-size: 19px;
   font-weight: 800;
 }
+#videoContainer .watch-video__data,
 .watch-video .watch-video__data {
   display: flex;
 }
+#videoContainer .watch-video__data .watch-video__img,
 .watch-video .watch-video__data .watch-video__img {
   width: 35px;
   height: 35px;
   border-radius: 50%;
   margin-right: 10px;
 }
+#videoContainer .watch-video__data .watch-video__text,
 .watch-video .watch-video__data .watch-video__text {
   display: flex;
   flex-direction: column;
   font-size: 15px;
   font-weight: 400;
 }
+#videoContainer .watch-video__data .watch-video__text small,
 .watch-video .watch-video__data .watch-video__text small {
   margin-top: 3px;
   font-size: 12px;
   opacity: 0.8;
 }
+#videoContainer .watch-video__meta,
 .watch-video .watch-video__meta {
-  background-color: #e8e8e8;
+  background-color: #454545;
   margin: 12px 0;
   padding: 15px;
   border-radius: 12px;
   font-size: 13px;
   font-weight: 500;
-  color: #454545;
+  color: white;
 }
 
 .video-link {
@@ -461,8 +465,8 @@ input[type=submit] {
   margin-top: 20px;
 }
 .video-link a {
-  background-color: #454545;
-  color: white;
+  background-color: #e8e8e8;
+  color: black;
   font-size: 13px;
   font-weight: 800;
   margin-left: 12px;
@@ -480,7 +484,7 @@ a {
 
 body {
   font-family: system-ui, -apple-system, "Gothic A1", BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background-color: #454545;
+  background-color: black;
   color: white;
 }
 

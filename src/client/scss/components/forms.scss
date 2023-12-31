@@ -23,37 +23,35 @@ form {
       border: 1.5px solid $subb;
     }
   }
-}
-
-input {
-  all: unset;
-  background-color: $bg;
-  color: $subbb;
-  font-size: 15px;
-  padding: 15px 20px;
-  margin-bottom: 10px;
-  width: 90%;
-  border-radius: 5px;
-  border: 2px solid $bg;
-  transition: 0.2s ease-in-out;
-  &::placeholder {
-    color: $key;
-    font-size: 14px;
-    font-weight: 600;
+  input {
+    all: unset;
+    background-color: $bg;
+    color: $subbb;
+    font-size: 15px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    width: 90%;
+    border-radius: 5px;
+    border: 2px solid $bg;
+    transition: 0.2s ease-in-out;
+    &::placeholder {
+      color: $key;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    &:focus {
+      border: 2px solid $subww;
+    }
   }
-  &:focus {
-    border: 2px solid $subww;
+  input[type="submit"] {
+    all: unset;
+    cursor: pointer;
+    background-color: $subww;
+    color: $font;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 12px 20px;
+    margin-top: 21px;
+    border-radius: 5px;
   }
-}
-
-input[type="submit"] {
-  all: unset;
-  cursor: pointer;
-  background-color: $subww;
-  color: $font;
-  font-size: 15px;
-  font-weight: 700;
-  padding: 12px 20px;
-  margin-top: 21px;
-  border-radius: 5px;
 }
