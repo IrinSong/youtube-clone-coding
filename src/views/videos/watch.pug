@@ -3,18 +3,19 @@ extends ../layout
 block content
   div#videoContainer
     video(src="/" + video.videoUrl)
-    div
-      button#play Play
-      button#mute Mute
-      input#volume(type="range", name="volume", step="0.1", value="0.5", min="0", max="1")
+    div#videoControls.videoControls
+      div.videoControls__play
+        span.material-symbols-outlined#play play_arrow
+        div.videoControls__time
+          span#currentTime 00:00:00
+          span  / 
+          span#totalTime 00:00:00
+      input#timeline(type="range", name="timeline", step="1", value="0", min="0")
+      div.videoControls__volume
+        input#volume(type="range", name="volume", step="0.1", value="0.5", min="0", max="1")
+        span.material-symbols-outlined#mute volume_up
       div 
-        span#currentTime 00:00:00
-        span  / 
-        span#totalTime 00:00:00
-      div 
-        input#timeline(type="range", name="timeline", step="1", value="0", min="0")
-      div 
-        button#fullScreen Enter Full Screen
+        span.material-symbols-outlined#fullScreen fullscreen
   div.watch-video
     span.watch-video__title=video.title
     div.watch-video__data
