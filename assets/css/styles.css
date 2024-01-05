@@ -350,23 +350,25 @@ form input[type=submit] {
 }
 #videoContainer .videoControls {
   opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
   position: absolute;
   justify-content: space-between;
   align-items: center;
   display: grid;
   grid-template-columns: 1fr 4fr 1fr auto;
   gap: 10px;
-  width: 95%;
+  width: 100%;
   box-sizing: border-box;
-  bottom: 10px;
+  bottom: 0;
   left: 0;
   right: 0;
-  margin: 0 auto;
-  padding: 10px;
+  margin: 0;
+  padding: 20px 10px;
 }
 #videoContainer .videoControls.showing {
-  opacity: 1;
+  opacity: 0.8;
+  text-shadow: #454545 1px 1px 6px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0));
 }
 #videoContainer .videoControls span {
   cursor: pointer;
@@ -389,6 +391,9 @@ form input[type=submit] {
 #videoContainer .videoControls .videoControls__volume span {
   margin-left: 10px;
   font-size: 20px;
+}
+#videoContainer .videoControls .videoControls__fullscreen span {
+  margin-right: 15px;
 }
 
 .search__form {

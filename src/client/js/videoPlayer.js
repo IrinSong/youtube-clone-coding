@@ -56,6 +56,10 @@ const handleVideoTime = () => {
   currentTime.innerText = formatTime(Math.floor(video.currentTime));
   timeline.value = Math.floor(video.currentTime);
 };
+const handleVideoEnded = () => {
+  const { id } = videoContainer.dataset;
+  fetch(`/api/videos/${id}/view`, { method: "POST" }); // fetch-> GET 요청을 보내는 것. POST 설정 필요
+};
 
 const hideControls = () => videoControls.classList.remove("showing");
 const handleVideoMove = () => {
@@ -95,6 +99,7 @@ muteBtn.addEventListener("click", handleMuteClick);
 volumeRange.addEventListener("input", handleVolumeChange);
 video.addEventListener("loadedmetadata", handleVideoMeta);
 video.addEventListener("timeupdate", handleVideoTime);
+video.addEventListener("ended", handleVideoEnded);
 videoContainer.addEventListener("mousemove", handleVideoMove);
 videoContainer.addEventListener("mouseleave", handleVideoLeave);
 timeline.addEventListener("input", handleTimeChange);
