@@ -25,7 +25,7 @@ export const postUpload = async (req, res) => {
   const {
     user: { _id },
   } = req.session;
-  const { file } = req;
+  const { video, thumb } = req.files;
   const { title, description, hashtags } = req.body;
   try {
     const newVideo = await Video.create({
@@ -33,7 +33,8 @@ export const postUpload = async (req, res) => {
       // await에서 에러가 생기면 아무것도 실행되지 않음. 넘어가기 위해서 try catch 를 사용
       title,
       description,
-      videoUrl: file.path,
+      videoUrl: video[0].path,
+      thumbUrl: thumb[0].path,
       hashtags: Video.formatHashtags(hashtags),
       owner: _id,
     });
@@ -76,12 +77,14 @@ export const getEdit = async (req, res) => {
 };
 export const postEdit = async (req, res) => {
   const { id } = req.params;
+  //const { file } = req;
   const { title, description, hashtags } = req.body; // express.urlencoded({ extended: true })가 있기에 가능.
   const video = await Video.exists({ _id: id }); // postEdit에서 video object를 검색할 필요가 없음. 따라서 대신 boolean 값을 받음. 따라서 findById() => exists()
   if (!video) {
     return res.status(404).render("404", { pageTitle: "Video not found" });
   }
   await Video.findByIdAndUpdate(id, {
+    //thumbUrl: file ? file.path : thumbUrl,
     title: title,
     description: description,
     hashtags: Video.formatHashtags(hashtags),

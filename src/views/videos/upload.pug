@@ -7,6 +7,8 @@ block content
     div.input-label
       label(for="video") 비디오 파일 첨부
       input(type="file", name="video", id="video", accept="video/*", required).file-input 
+      label(for="thumb") 썸네일 첨부
+      input(type="file", name="thumb", id="thumb", accept="image/*", required).file-input
     input(name="title", type="text", placeholder="제목", maxlegth=80, required)
     input(name="description", type="text", placeholder="설명", minlength=20, required)
     input(name="hashtags", type="text", placeholder="해시태그 - 쉼표(,)로 구분", required)
