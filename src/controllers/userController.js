@@ -133,7 +133,9 @@ export const finishGithubLogin = async (req, res) => {
 };
 
 export const logout = (req, res) => {
-  req.session.destroy();
+  req.session.user = null;
+  res.locals.loggedInUser = req.session.user;
+  req.session.loggedIn = false;
   return res.redirect("/");
 };
 
@@ -167,11 +169,13 @@ export const postEdit = async (req, res) => {
   //   location,
   // };
   req.session.user = updatedUser;
-  return res.redirect("edit");
+  req.flash("success", "변경되었습니다.");
+  return res.redirect(`${_id}`);
 };
 
 export const getChangePassword = (req, res) => {
   if (req.session.user.socialAccount === true) {
+    req.flash("error", "소셜 로그인 회원에게는 불가능한 기능입니다.");
     return res.redirect("/");
   }
   return res.render("users/change-password", { pageTitle: "Change Password" });
@@ -200,6 +204,7 @@ export const postChangePassword = async (req, res) => {
   user.password = newPassword;
   await user.save(); // hash를 작동시키기 위함
   //req.session.user.password = user.password; -> session에서 정보를 받으면 업데이트도 해줘야 함
+  req.flash("info", "비밀번호가 변경되었습니다.");
   return res.redirect("/users/logout");
 };
 

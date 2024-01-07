@@ -443,19 +443,21 @@ form input[type=submit] {
 }
 .profile__data img {
   margin-bottom: 20px;
+  border: 2px solid #e8e8e8;
 }
 .profile__data h3 {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 600;
+  color: #e8e8e8;
 }
 .profile__data .edit_profile__link {
   background-color: #87e89d;
-  padding: 8px 16px;
+  padding: 9px 15px;
   border-radius: 16px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   color: black;
-  margin-top: 10px;
+  margin-top: 25px;
 }
 
 .edit-profile__password {
@@ -557,4 +559,39 @@ main {
 
 .material-symbols-outlined {
   font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+@keyframes goAway {
+  from {
+    transform: none;
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+}
+.message {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  max-width: 200px;
+  padding: 15px 10px;
+  border-radius: 30px;
+  text-align: center;
+  animation: goAway 0.5s ease-in-out forwards;
+  animation-delay: 5s;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.message.success {
+  background-color: #87e89d;
+  color: black;
+}
+.message.error {
+  background-color: tomato;
+  color: white;
 }

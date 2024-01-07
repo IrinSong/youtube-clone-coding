@@ -11,7 +11,7 @@ export const search = async (req, res) => {
   if (keyword) {
     videos = await Video.find({
       title: {
-        $regex: new RegExp(`${keyword}$`, "i"), // MongoDB 기능: regex <- regular expression, i <- 대문자 소문자 구분 없이 해주는 역할
+        $regex: new RegExp(keyword, "i"), // MongoDB 기능: regex <- regular expression, i <- 대문자 소문자 구분 없이 해주는 역할
       },
     }).populate("owner");
   }
@@ -41,6 +41,7 @@ export const postUpload = async (req, res) => {
     const user = await User.findById(_id);
     user.videos.push(newVideo._id);
     user.save();
+    req.flash("success", "업로드 완료!");
     return res.redirect("/");
   } catch (error) {
     console.log(error);
@@ -71,24 +72,31 @@ export const getEdit = async (req, res) => {
     return res.status(404).render("404", { pageTitle: "Video not found" });
   }
   if (String(video.owner) !== String(_id)) {
+    req.flash("error", "허용되지 않은 접근입니다.");
     return res.status(403).redirect("/");
   }
   return res.render("videos/edit", { pageTitle: `Editing ${video.title}`, video });
 };
 export const postEdit = async (req, res) => {
   const { id } = req.params;
+  const {
+    user: { _id },
+  } = req.session;
   //const { file } = req;
   const { title, description, hashtags } = req.body; // express.urlencoded({ extended: true })가 있기에 가능.
-  const video = await Video.exists({ _id: id }); // postEdit에서 video object를 검색할 필요가 없음. 따라서 대신 boolean 값을 받음. 따라서 findById() => exists()
+  const video = await Video.findById(id);
   if (!video) {
     return res.status(404).render("404", { pageTitle: "Video not found" });
   }
-  await Video.findByIdAndUpdate(id, {
-    //thumbUrl: file ? file.path : thumbUrl,
-    title: title,
-    description: description,
-    hashtags: Video.formatHashtags(hashtags),
-  });
+  if (String(video.owner) !== String(_id)) {
+    req.flash("error", "해당 비디오의 소유주가 아닙니다.");
+    return res.status(403).redirect("/");
+  }
+  video.title = title;
+  video.description = description;
+  video.hashtags = Video.formatHashtags(hashtags);
+  await video.save();
+  req.flash("success", "변경되었습니다.");
   return res.redirect(`/videos/${id}`);
 };
 
@@ -102,6 +110,7 @@ export const remove = async (req, res) => {
     return res.status(404).render("404", { pageTitle: "Video not found" });
   }
   if (String(video.owner) !== String(_id)) {
+    req.flash("error", "해당 비디오의 소유자가 아닙니다.");
     return res.status(403).redirect("/");
   }
   await Video.findByIdAndDelete(id);

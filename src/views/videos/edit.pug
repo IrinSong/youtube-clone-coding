@@ -2,7 +2,7 @@ extends ../layout
 
 block content
     //- GET: 기본값. 검색할 때. POST: 파일을 보낼 떄, DB를 바꾸는 data를 보낼 때, 로그인 할 때.
-    form(method="POST", enctype="multipart/form-data")
+    form(method="POST")
       //- every 'input' must have a name!!
       div.input-label
         label(for="title") 제목
@@ -11,4 +11,4 @@ block content
         input(name="description", id="description", type="text", placeholder="Description", value=video.description, minlength=20, required)
         label(for="hashtags") 해시태그
         input(name="hashtags", id="hashtags", type="text", placeholder="Hashtags, separated by comma.", value=video.hashtags.join().replaceAll("#", ""), required)
-        input(type="submit", value="Save")
+      input(type="submit", value="저장")

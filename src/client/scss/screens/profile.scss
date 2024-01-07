@@ -7,18 +7,20 @@
   margin-bottom: 80px;
   img {
     margin-bottom: 20px;
+    border: 2px solid $bg;
   }
   h3 {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 600;
+    color: $bg;
   }
   .edit_profile__link {
     background-color: $subww;
-    padding: 8px 16px;
+    padding: 9px 15px;
     border-radius: 16px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     color: black;
-    margin-top: 10px;
+    margin-top: 25px;
   }
 }
