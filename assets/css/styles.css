@@ -187,8 +187,8 @@ header .header__avatar {
 header .header__btn {
   background-color: #87e89d;
   color: #454545;
-  padding: 5px 10px;
-  border-radius: 5px;
+  padding: 8px 12px;
+  border-radius: 10px;
 }
 
 footer {
@@ -212,13 +212,14 @@ footer {
   height: 28px;
   width: 28px;
   border-radius: 50%;
+  margin-bottom: 5px;
   border: 1px solid #454545;
 }
 .video-mixin .video-mixin__data .video-mixin__text {
   padding: 0 10px;
 }
 .video-mixin .video-mixin__data .video-mixin__text .video-mixin__title {
-  line-height: 1.2em;
+  line-height: 1.3em;
   display: block;
   font-size: 15px;
   font-weight: 600;
@@ -362,8 +363,7 @@ form input[type=submit] {
   bottom: 0;
   left: 0;
   right: 0;
-  margin: 0;
-  padding: 20px 10px;
+  padding: 30px 10px;
 }
 #videoContainer .videoControls.showing {
   opacity: 0.8;
@@ -393,7 +393,39 @@ form input[type=submit] {
   font-size: 20px;
 }
 #videoContainer .videoControls .videoControls__fullscreen span {
-  margin-right: 15px;
+  margin: 0 15px;
+  font-size: 20px;
+}
+
+.rangeInput {
+  overflow: hidden;
+  height: 9px;
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+}
+
+.rangeInput:focus {
+  outline: none;
+}
+
+.rangeInput::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border-radius: 30px;
+  border: 0.5px solid #87e89d;
+  opacity: 0.8;
+}
+
+.rangeInput::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 9px;
+  height: 9px;
+  background: #87e89d;
+  box-shadow: 1px 1px 7px #5a9c69;
+  cursor: pointer;
+  box-shadow: -100vw 0 0 100vw #43734e;
 }
 
 .search__form {
@@ -410,15 +442,15 @@ form input[type=submit] {
   padding: 15px 20px;
   margin-bottom: 5px;
   font-size: 16px;
-  border: 2px solid #72c485;
+  border: 3px solid #5a9c69;
   border-radius: 30px;
-  transition: 0.2s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 .search__form input::placeholder {
   color: #e8e8e8;
 }
 .search__form input:focus {
-  border: 2px solid #87e89d;
+  border: 3px solid #87e89d;
 }
 .search__form button {
   all: unset;
@@ -426,11 +458,10 @@ form input[type=submit] {
   text-align: center;
   position: absolute;
   cursor: pointer;
+  top: 15px;
   right: 15px;
   font-size: 18px;
-}
-.search__form button span {
-  margin-bottom: 10px;
+  color: #e8e8e8;
 }
 
 .profile__data {
@@ -478,8 +509,8 @@ form input[type=submit] {
 }
 #videoContainer .watch-video__title,
 .watch-video .watch-video__title {
-  margin: 12px 0;
-  font-size: 19px;
+  margin: 16px 0;
+  font-size: 20px;
   font-weight: 800;
 }
 #videoContainer .watch-video__data,
@@ -497,34 +528,34 @@ form input[type=submit] {
 .watch-video .watch-video__data .watch-video__text {
   display: flex;
   flex-direction: column;
-  font-size: 15px;
-  font-weight: 400;
+  font-size: 16px;
+  font-weight: 500;
 }
 #videoContainer .watch-video__data .watch-video__text small,
 .watch-video .watch-video__data .watch-video__text small {
-  margin-top: 3px;
-  font-size: 12px;
+  margin-top: 5px;
+  font-size: 13px;
   opacity: 0.8;
 }
 #videoContainer .watch-video__meta,
 .watch-video .watch-video__meta {
   background-color: #454545;
-  margin: 12px 0;
+  margin: 15px 0;
   padding: 15px;
   border-radius: 12px;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 400;
   color: white;
 }
 #videoContainer .watch-video__meta p,
 .watch-video .watch-video__meta p {
-  line-height: 1.5em;
+  line-height: 1.6em;
 }
 
 .video-link {
   display: flex;
   justify-content: end;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 .video-link a {
   background-color: #e8e8e8;
@@ -539,13 +570,118 @@ form input[type=submit] {
   background-color: #87e89d;
 }
 
+.comments {
+  display: block;
+  margin-top: 45px;
+  color: white;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.video__add-comments {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+}
+.video__add-comments .video__add-comment-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 10px;
+}
+.video__add-comments .video__add-comment-form {
+  all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+  background-color: black;
+}
+.video__add-comments .video__add-comment-form .video__add-comment-input {
+  all: unset;
+  border-bottom: 1px solid white;
+  transition: 0.2s ease-in-out;
+  width: 90%;
+  height: 40px;
+  padding: 10px auto;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0 10px;
+}
+.video__add-comments .video__add-comment-form .video__add-comment-input::placeholder {
+  color: #e8e8e8;
+  font-size: 14px;
+  font-weight: 400;
+}
+.video__add-comments .video__add-comment-form .video__add-comment-input:focus {
+  border-bottom: 3px solid white;
+}
+.video__add-comments .video__add-comment-form button {
+  margin: 0 10px;
+  all: unset;
+  color: black;
+  background-color: #87e89d;
+  border-style: none;
+  border-radius: 30px;
+  cursor: pointer;
+  padding: 14px 21px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.video__comments {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 45px auto;
+}
+.video__comments .video__comment {
+  display: flex;
+  color: white;
+  margin-bottom: 30px;
+}
+.video__comments .video__comment .material-symbols-outlined {
+  color: #454545;
+  font-size: 20px;
+  margin-top: 25px;
+  padding: 0 15px;
+  cursor: pointer;
+}
+.video__comments .video__comment .video__comment-img {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+.video__comments .video__comment .video__comment-data {
+  display: flexbox;
+  flex-direction: column;
+}
+.video__comments .video__comment .video__comment-data .video__comment-name {
+  font-size: 15px;
+  font-weight: 600;
+}
+.video__comments .video__comment .video__comment-data small {
+  margin-left: 5px;
+  font-size: 13px;
+  opacity: 0.6;
+  font-weight: 300;
+}
+.video__comments .video__comment .video__comment-text {
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6em;
+}
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
 body {
-  font-family: system-ui, -apple-system, "Gothic A1", BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: "Gothic A1", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background-color: black;
   color: white;
 }

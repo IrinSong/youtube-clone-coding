@@ -2,17 +2,17 @@ extends ../layout
 
 block content
   div#videoContainer(data-id=video._id)
-    video(src="/" + video.videoUrl)
+    video(src="/" + video.videoUrl autoplay)
     div#videoControls.videoControls
       div.videoControls__play
-        span.material-symbols-outlined#play play_arrow
+        span.material-symbols-outlined#play pause
         div.videoControls__time
           span#currentTime 00:00:00
           span  / 
           span#totalTime 00:00:00
-      input#timeline(type="range", name="timeline", step="1", value="0", min="0")
+      input#timeline.rangeInput(type="range", name="timeline", step="1", value="0", min="0")
       div.videoControls__volume
-        input#volume(type="range", name="volume", step="0.1", value="0.5", min="0", max="1")
+        input#volume.rangeInput(type="range", name="volume", step="0.1", value="0.5", min="0", max="1")
         span.material-symbols-outlined#mute volume_up
       div.videoControls__fullscreen
         span.material-symbols-outlined#fullScreen fullscreen
@@ -23,7 +23,7 @@ block content
         img(src= "/" + video.owner.avatarUrl).watch-video__img
       div.watch-video__text
         a(href=`/users/${video.owner._id}`) #{video.owner.name}
-        small #{video.meta.views}회 • #{video.createdAt}
+        small #{video.meta.views}회 • #{video.createdAt.toLocaleDateString()}
     div.watch-video__meta
       p=video.description
   //- h3 #{video.views} #{video.views === 1 ? "view" : "views"}
@@ -35,5 +35,28 @@ block content
       //- href 앞머리에 /를 넣으면 root + /edit으로 가게 됨(absolute url). 앞머리에 /가 없다면 relative url이 됨.
       a(href=`${video.id}/delete`).video-link__delete 비디오 삭제 &rarr;
 
+  span.comments 코멘트
+  if loggedIn
+    div.video__add-comments
+      img(src= "/" + loggedInUser.avatarUrl).video__add-comment-img
+      form.video__add-comment-form#commentForm(data-id=loggedInUser._id data-name=loggedInUser.name data-avatar=loggedInUser.avatarUrl)
+        input.video__add-comment-input#commentInput(type="text", placeholder="코멘트 추가...")
+        button 코멘트
+  div.video__comments
+    ul 
+      each comment in video.comments.reverse()
+        li#videoComment.video__comment(data-id=comment._id)
+          a(href=`/users/${comment.owner}`)
+            img.video__comment-img(src= "/" + comment.owner_avatar)
+          div.video__comment-data
+            div.video__comment-name
+              a(href=`/users/${comment.owner}`) @#{comment.owner_name}
+              small #{comment.createdAt.toLocaleString()}
+            div.video__comment-text #{comment.text}
+          if !loggedIn
+          else if String(loggedInUser._id) === String(comment.owner)
+            span#delete-comment.material-symbols-outlined close
+
 block scripts 
   script(src="/assets/js/videoPlayer.js")
+  script(src="/assets/js/commentSection.js")

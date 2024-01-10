@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "clone coding ver.2 youtube",
   "scripts": {
+    "build:server": "babel src/init.js -d build",
     "dev:server": "nodemon",
     "dev:assets": "webpack --config webpack.config.js"
   },
@@ -30,7 +31,8 @@
     "pug": "^3.0.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.0",
+    "@babel/cli": "^7.23.4",
+    "@babel/core": "^7.23.7",
     "@babel/node": "^7.22.19",
     "@babel/preset-env": "^7.22.20",
     "babel-loader": "^9.1.3",

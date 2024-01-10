@@ -11,14 +11,14 @@
     padding: 15px 20px;
     margin-bottom: 5px;
     font-size: 16px;
-    border: 2px solid $subw;
+    border: 3px solid $key;
     border-radius: 30px;
-    transition: 0.2s ease-in-out;
+    transition: 0.5s ease-in-out;
     &::placeholder {
       color: $bg;
     }
     &:focus {
-      border: 2px solid $subww;
+      border: 3px solid $subww;
     }
   }
   button {
@@ -27,10 +27,9 @@
     text-align: center;
     position: absolute;
     cursor: pointer;
+    top: 15px;
     right: 15px;
     font-size: 18px;
-    span {
-      margin-bottom: 10px;
-    }
+    color: $bg;
   }
 }

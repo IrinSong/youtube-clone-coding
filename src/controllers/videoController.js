@@ -1,5 +1,6 @@
 import Video from "../models/Video";
 import User from "../models/User";
+import Comment from "../models/Comment";
 
 export const home = async (req, res) => {
   const videos = await Video.find({}).sort({ createdAt: "desc" }).populate("owner"); // await -> database에게 결과값을 받을 때까지 기다려줌.
@@ -53,13 +54,14 @@ export const postUpload = async (req, res) => {
 };
 
 export const watch = async (req, res) => {
+  const { user } = req.session;
   const { id } = req.params; // id로 비디오를 찾을 수 있음.(-> mongoose queries)
   // const id = req.parmas.id;
-  const video = await Video.findById(id).populate("owner"); // .exex() -> execute를 호출하면 promise가 return 됨. but, 우리는 async await을 사용하고 있으므로 필요X
+  const video = await Video.findById(id).populate("owner").populate("comments"); // .exex() -> execute를 호출하면 promise가 return 됨. but, 우리는 async await을 사용하고 있으므로 필요X
   if (!video) {
     return res.status(404).render("404", { pageTitle: "Video not found" }); // 에러처리 -> reutrn!!
   }
-  return res.render("videos/watch", { pageTitle: video.title, video });
+  return res.render("videos/watch", { pageTitle: video.title, video, user });
 };
 
 export const getEdit = async (req, res) => {
@@ -126,4 +128,46 @@ export const registerView = async (req, res) => {
   video.meta.views = video.meta.views + 1;
   await video.save();
   return res.sendStatus(200); //ok
+};
+
+export const createComment = async (req, res) => {
+  const {
+    params: { id },
+    body: { text },
+    session: { user },
+  } = req;
+  const video = await Video.findById(id);
+  if (!video) {
+    return res.sendStatus(404);
+  }
+  const comment = await Comment.create({
+    text,
+    video: id,
+    owner: user._id,
+    owner_avatar: user.avatarUrl,
+    owner_name: user.name,
+  });
+  video.comments.push(comment._id); // 새 코멘트의 id를 손수 넣어줘야 함
+  video.save();
+  return res.status(201).json({ newCommentId: comment._id }); // frontend에 새로 생긴 댓글의 id를 보내기 위함
+};
+
+export const deleteComment = async (req, res) => {
+  const {
+    session: {
+      user: { _id },
+    },
+    body: { videoId, commentId },
+  } = req;
+  const { owner } = await Comment.findById(commentId);
+  const video = await Video.findById(videoId);
+  console.log(owner);
+  if (String(owner) !== String(_id)) {
+    return res.sendStatus(403);
+  }
+  if (!video) {
+    return res.sendStatus(404);
+  }
+  await Comment.findByIdAndDelete(commentId);
+  return res.sendStatus(200);
 };

@@ -8,6 +8,7 @@ const totalTime = document.getElementById("totalTime");
 const volumeRange = document.getElementById("volume");
 const timeline = document.getElementById("timeline");
 const fullScreenBtn = document.getElementById("fullScreen");
+const textarea = document.getElementById("commentInput");
 
 let controlsTimeout = null;
 let controlsMovementTimeout = null;
@@ -97,6 +98,7 @@ const handleFullScreen = () => {
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);
 volumeRange.addEventListener("input", handleVolumeChange);
+video.addEventListener("click", handlePlayClick);
 video.addEventListener("loadedmetadata", handleVideoMeta);
 video.addEventListener("timeupdate", handleVideoTime);
 video.addEventListener("ended", handleVideoEnded);
@@ -104,3 +106,13 @@ videoContainer.addEventListener("mousemove", handleVideoMove);
 videoContainer.addEventListener("mouseleave", handleVideoLeave);
 timeline.addEventListener("input", handleTimeChange);
 fullScreenBtn.addEventListener("click", handleFullScreen);
+document.addEventListener("keydown", (e) => {
+  if (e.target !== textarea) {
+    if (e.code === "Space") {
+      e.preventDefault();
+      handlePlayClick();
+    } else if (e.keyCode === 70) {
+      handleFullScreen();
+    }
+  }
+});
