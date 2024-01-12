@@ -1,9 +1,9 @@
 mixin info(video)
   a(href=`/videos/${video.id}`).video-mixin
     //- attribute(href, class, id ..)에는 #{} 사용이 불가능.
-    div.video-mixin__thumb(style=`background-image:url(${"/"+video.thumbUrl});background-size:cover;background-position:center;`)
+    div.video-mixin__thumb(style=`background-image:url(${video.thumbUrl});background-size:cover;background-position:center;`)
     div.video-mixin__data
-      img(src= "/" + video.owner.avatarUrl).video-mixin__img
+      img(src=video.owner.avatarUrl).video-mixin__img
       div.video-mixin__text
         span.video-mixin__title=video.title
         div.video-mixin__meta
