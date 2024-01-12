@@ -20,7 +20,7 @@ block content
     span.watch-video__title=video.title
     div.watch-video__data
       a(href=`/users/${video.owner._id}`)
-        img(src= "/" + video.owner.avatarUrl).watch-video__img
+        img(src=video.owner.avatarUrl).watch-video__img
       div.watch-video__text
         a(href=`/users/${video.owner._id}`) #{video.owner.name}
         small #{video.meta.views}회 • #{video.createdAt.toLocaleDateString()}
@@ -38,7 +38,7 @@ block content
   span.comments 코멘트
   if loggedIn
     div.video__add-comments
-      img(src= "/" + loggedInUser.avatarUrl).video__add-comment-img
+      img(src=loggedInUser.avatarUrl).video__add-comment-img
       form.video__add-comment-form#commentForm(data-id=loggedInUser._id data-name=loggedInUser.name data-avatar=loggedInUser.avatarUrl)
         input.video__add-comment-input#commentInput(type="text", placeholder="코멘트 추가...")
         button 코멘트
@@ -47,7 +47,7 @@ block content
       each comment in video.comments.reverse()
         li#videoComment.video__comment(data-id=comment._id)
           a(href=`/users/${comment.owner}`)
-            img.video__comment-img(src= "/" + comment.owner_avatar)
+            img.video__comment-img(src=comment.owner_avatar)
           div.video__comment-data
             div.video__comment-name
               a(href=`/users/${comment.owner}`) @#{comment.owner_name}
