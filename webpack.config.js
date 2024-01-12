@@ -11,7 +11,6 @@ module.exports = {
   }, // entry: sorce code which i want to transform
   plugins: [new MiniCssExtractPlugin({ filename: "css/styles.css" })],
   mode: "development",
-  watch: true,
   output: {
     filename: "js/[name].js",
     path: path.resolve(__dirname, "assets"), //where do we want to put our file

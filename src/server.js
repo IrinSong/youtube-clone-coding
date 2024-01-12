@@ -4,6 +4,7 @@ import morgan from "morgan";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import flash from "express-flash";
+import favicon from "serve-favicon";
 
 import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter";
