@@ -39,7 +39,7 @@ export const postJoin = async (req, res) => {
   }
 };
 
-export const getLogin = (req, res) => res.render("users/Login", { pageTitle: "Login" });
+export const getLogin = (req, res) => res.render("users/login", { pageTitle: "Login" });
 export const postLogin = async (req, res) => {
   const pageTitle = "Login";
   const { username, password } = req.body;
