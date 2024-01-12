@@ -34,8 +34,8 @@ export const postUpload = async (req, res) => {
       // await에서 에러가 생기면 아무것도 실행되지 않음. 넘어가기 위해서 try catch 를 사용
       title,
       description,
-      videoUrl: video[0].path,
-      thumbUrl: thumb[0].path,
+      videoUrl: video[0].location,
+      thumbUrl: thumb[0].location,
       hashtags: Video.formatHashtags(hashtags),
       owner: _id,
     });
