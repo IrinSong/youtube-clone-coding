@@ -2,7 +2,7 @@ extends ../layout
 
 block content
   div#videoContainer(data-id=video._id)
-    video(src="/" + video.videoUrl autoplay)
+    video(src=video.videoUrl autoplay)
     div#videoControls.videoControls
       div.videoControls__play
         span.material-symbols-outlined#play pause
